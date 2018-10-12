@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <title>个人博客系统 - MYBLOG</title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/flavr.css">
+</head>
+<body>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"  data-backdrop="false" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">修改密码</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">旧密码：</span>
+                            <input type="password" class="form-control edit-oldpassword">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">密码：</span>
+                            <input type="password" class="form-control edit-password" >
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btn-submit">提交更改</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<script type="text/javascript" src="/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.js"></script>
+<script type="text/javascript" src="/js/flavr.min.js"></script>
+<script>
+$(function () {
+    $('#myModal').modal('show');
+    $('#btn-submit').click(function () {
+        var oldpassword = $('.edit-oldpassword').val();
+        var password = $('.edit-password').val();
+        if(oldpassword ==null || oldpassword==""){
+            new $.flavr({ content : '旧密码不能为空',autoclose : false});
+            return;
+        }
+        if(password ==null || password==""){
+            new $.flavr({ content : '新密码不能为空',autoclose : false});
+            return;
+        }
+        $.ajax({
+            url:"/updatePwd",
+            type:"POST",
+            data:"oldpassword="+oldpassword+"&password="+password,
+            success:function (data) {
+                if(data.status==200){
+                    new $.flavr({ content : '保存成功',autoclose : false});
+                    $('#myModal').modal('hide');
+                }else{
+                    new $.flavr({ content : data.msg,autoclose : false});
+                }
+            }
+        });
+    });
+});
+</script>
+</body>

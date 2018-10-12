@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap-table.css">
+    <link rel="stylesheet" type="text/css" href="/css/list.css">
+    <link rel="stylesheet" type="text/css" href="/css/flavr.css">
+    <style type="text/css">
+        #editModal .row{
+            margin: 10px 1px;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row first-row">
+        <div class="first-row-title pull-left">
+            <div class="first-row-p">
+                <span class="glyphicon glyphicon-glass"></span>&nbsp;用户信息管理
+            </div>
+        </div>
+        <div class="first-row-button-group pull-right">
+            <button class="btn btn-default active" onclick="hideQueryParam(this)">
+                <span class="glyphicon glyphicon-collapse-down"></span>&nbsp;隐藏
+            </button>
+        </div>
+    </div>
+    <div class="row second-row">
+        <form class="form-inline">
+            <div class="form-group">
+                <label>用户名称：</label>
+                <input type="text" class="form-control name">
+            </div>&nbsp;&nbsp;
+            <button class="btn btn-primary" type="button" id="btn-query">查询</button>&nbsp;&nbsp;
+            <button class="btn btn-success" type="button" id="btn-add">新增</button>&nbsp;&nbsp;
+            <button class="btn btn-info" type="button"  id="btn-edit">修改</button>&nbsp;&nbsp;
+            <button class="btn btn-danger" type="button"  id="btn-del">删除</button>&nbsp;&nbsp;
+        </form>
+    </div>
+    <div class="row  three-row">
+        <!--https://blog.csdn.net/lzx_longyou/article/details/50563907-->
+        <div class="tab-div">
+            <table class="table table-bordered table-striped table-hover table-condensed table-responsive"
+                   id="data_tab">
+            </table>
+        </div>
+    </div>
+    <!-- 修改模态框 -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">用户信息</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <input type="hidden" class="form-control edit-id">
+                        <input type="hidden" class="edit-password">
+                        <input type="hidden" class="edit-avatar"> <!--头像，暂不支持，后续开发-->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">登录用户名：</span>
+                                    <input type="text" class="form-control edit-username">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">用户名称：</span>
+                                    <input type="text" class="form-control edit-name" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon ">昵称：</span>
+                                    <input type="text" class="form-control edit-nickname" >
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">用户签名：</span>
+                                    <input type="text" class="form-control edit-sign">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">用户说明：</span>
+                                    <input type="text" class="form-control edit-prifile">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="btn-submit">提交更改</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <!--end modal -->
+</div>
+<!-- container-fluid end -->
+
+</body>
+<script type="text/javascript" src="/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.js"></script>
+<script type="text/javascript" src="/js/bootstrap-table.js"></script>
+<script type="text/javascript" src="/js/bootstrap-table-zh-CN.js"></script>
+<script type="text/javascript" src="/js/flavr.min.js"></script>
+<script type="text/javascript" src="/js/common.js"></script>
+<script type="text/javascript" src="/js/showModifyInfo.js"></script>
+
+
+</html>

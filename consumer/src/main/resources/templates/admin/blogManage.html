@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <title>博客管理</title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap-table.css">
+    <link rel="stylesheet" type="text/css" href="/css/list.css">
+    <link rel="stylesheet" type="text/css" href="/css/flavr.css">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row first-row">
+        <div class="first-row-title pull-left">
+            <div class="first-row-p">
+                <span class="glyphicon glyphicon-glass"></span>&nbsp;博客管理
+            </div>
+        </div>
+        <div class="first-row-button-group pull-right">
+            <button class="btn btn-default active" id="btn-hidden" onclick="hideQueryParam(this)">
+                <span class="glyphicon glyphicon-collapse-down"></span>&nbsp;隐藏
+            </button>
+           <!-- <button class="btn btn-default" id="btn-new">
+                <span class="glyphicon glyphicon-plus"></span>&nbsp;新增
+            </button>-->
+        </div>
+    </div>
+    <div class="row second-row">
+        <form class="form-inline">
+            <div class="form-group">
+                <label>标题：</label>
+                <input type="text" class="form-control title">
+            </div>
+            <div class="form-group">
+                <label>博客分类：</label>
+                <select class="form-control blogtype">
+                    <div th:each="blogtype : ${blogTypes}">
+                        <option th:value="${blogtype.id}" th:text="${blogtype.typename}"></option>
+                    </div>
+                </select>
+            </div>&nbsp;&nbsp;
+            <button class="btn btn-primary" type="button" id="btn-query">查询</button>&nbsp;&nbsp;
+            <button class="btn btn-info" type="button"  id="btn-edit">修改</button>&nbsp;&nbsp;
+            <button class="btn btn-danger" type="button"  id="btn-del">删除</button>&nbsp;&nbsp;
+        </form>
+    </div>
+    <div class="row  three-row">
+        <!--https://blog.csdn.net/lzx_longyou/article/details/50563907-->
+        <div class="tab-div">
+            <table class="table table-bordered table-striped table-hover table-condensed table-responsive"
+                   id="blog_tab">
+                <!--<thead>
+                    <tr>
+                        <th data-field="id" data-sortable="true">编号</th>
+                        <th data-field="title" data-sortable="true">标题</th>
+                        <th data-field="releasedate" data-sortable="true">发布日期</th>
+                        <th data-field="typename" data-sortable="true">博客类别</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>-->
+
+            </table>
+        </div>
+    </div>
+    <!-- 修改模态框 -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false" aria-hidden="true">
+        <div class="modal-dialog" style="width: 90%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">修改</h4>
+                </div>
+                <div class="modal-body" style="height: 480px;">
+                    <iframe id="show-page" src="" width="100%" height="100%" frameborder="0"></iframe>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <!--end modal -->
+</div>
+<!-- container-fluid end -->
+
+</body>
+<script type="text/javascript" src="/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.js"></script>
+<script type="text/javascript" src="/js/bootstrap-table.js"></script>
+<script type="text/javascript" src="/js/bootstrap-table-zh-CN.js"></script>
+<script type="text/javascript" src="/js/flavr.min.js"></script>
+<script type="text/javascript" src="/js/common.js"></script>
+<script type="text/javascript" src="/js/blog/blogManage.js"></script>
+<script type="text/javascript">
+
+    /*function initTable(table) {
+        //先销毁表格
+        $(table).bootstrapTable('destroy');
+        //初始化表格,动态从服务器加载数据
+        $(table).bootstrapTable({
+                method: "get",  //使用get请求到服务器获取数据
+                url: "/blogger/listBlog",
+                striped: true,  //表格显示条纹
+                pagination: true, //启动分页
+                //toolbar: toolbar,//工具按钮用哪个容器
+                pageSize: 8,  //每页显示的记录数
+                pageNumber: 1, //当前第几页
+                pageList: [5, 10, 15, 20, 25],  //记录数可选列表
+                search: false,  //是否启用查询
+                showColumns: true,  //显示下拉框勾选要显示的列
+                showRefresh: true,  //显示刷新按钮
+                sidePagination: "server", //表示服务端请求
+                //设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder
+                 //设置为limit可以获取limit, offset, search, sort, order
+                queryParamsType: "undefined",
+                //columns: createCols(params,titles,hasCheckbox),
+                columns:[{
+                    checkbox : true
+                },{
+                    field: 'id',
+                    title: '编号'
+                },{
+                    field: 'title',
+                    title: '标题'
+                },{
+                    field: 'releasedate',
+                    title: '发布日期',
+                    class:'releasedate',
+                    formatter: function (value, row, index) {
+                        return changeDateFormat(value)
+                    }
+                },{
+                    field: 'typename',
+                    title: '博客类别'
+                }],
+                queryParams: function queryParams(params) {
+                //设置查询参数
+                    var param = {
+                        pageNumber: params.pageNumber,
+                        pageSize: params.pageSize,
+                        typeid:$(".blogtype option:selected").val(),
+                        title:$(".title").val()
+                    };
+                    return param;
+                   //return params;
+                },
+                onLoadSuccess: function () {  //加载成功时执行
+                    //layer.msg("加载成功");
+                },
+                onLoadError: function () {  //加载失败时执行
+                    //layer.msg("加载数据失败", {time: 1500, icon: 2});
+                }
+            });
+    }*/
+
+</script>
+
+</html>

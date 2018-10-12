@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+	<title>个人博客系统 - MYBLOG</title>
+	<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
+	<!-- http://fontawesome.dashgame.com/ 参看字体图标 -->
+	<link rel="stylesheet" type="text/css" href="css/flavr.css">
+	<link rel="stylesheet" type="text/css" href="/css/home.css">
+</head>
+<body>
+<div class="header">
+	<div class="head-title">MY ADMIN</div>
+	<i class="fa fa-align-justify" id="hide-left-menu"></i>
+</div>
+<div class="main">
+	<!-- 左侧菜单栏目 -->
+	<div class="left-menu">
+		<div class="left-menu-top">
+			<img alt="个人头像"  th:src="${session.currUser.avatar}">
+			<div class="left-menu-top-msg">
+				<p th:text="${session.currUser.name}">梦回起点</p>
+				<a href="javascript:void(0)">
+					<i class="fa fa-sign-in"></i>
+					在线
+				</a>
+				<a href="javascript:void(0)" onclick="fnLogout()">
+					<i class="fa fa-sign-out"></i>
+					注销
+				</a>
+			</div>
+		</div>
+		<div class="left-menu-bottom">
+			<ul class="left-menu-root">
+				<li>
+					<a href="javascript:void(0)" class="menu-show">
+						<i class="fa fa-home"></i>&nbsp;博客管理
+						<span><i class="fa fa-caret-down"></i></span>
+					</a>
+					<ul class="left-menu-second">
+						<li  th:each="menu : ${session.menus}">
+							<a href="javascript:void(0)"  class="menu-show">
+								<i th:attr="class = ${menu.icon}"></i>&nbsp;<span th:text="${menu.title}"></span>
+								<span><i class="fa fa-caret-left"></i></span>
+							</a>
+							<ul class="left-menu-three">
+								<li th:each="child : ${menu.children}">
+									<a href="javascript:void(0)"  th:attr="index=${child.href}" onclick="showPageMenu(this)">
+										<i  th:attr="class = ${child.icon}"></i>&nbsp;<span th:text="${child.title}"></span>
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- 左侧菜单栏目结束 -->
+
+	<!-- 中间部分 -->
+	<div class="midden-content">
+		<!-- 顶部导航栏 -->
+		<div class="midden-head">
+			<ul id="top-menu">
+				<li class="yibiao">
+					<a href="javascript:void(0)" index="/index" onclick="showPage(this)">首页</a>
+				</li>
+			<!--  <li class="midden-head-li">
+								<a href="javascript:void(0)" index="index2.html" onclick="showPage(this)">机构管理</a>
+								<div class="close">x</div>
+							</li>
+							<li class="midden-head-li active">
+								<a href="javascript:void(0)" index="index3.html" onclick="showPage(this)">系统管理</a>
+								<div class="close">x</div>
+							</li>  -->
+			</ul>
+		</div>
+		<!-- 顶部导航栏结束 -->
+		<!-- 链接页面 -->
+		<iframe id="show-page" src="/index" width="100%" height="100%" frameborder="0"></iframe>
+	</div>
+	<!-- 中间部分结束 -->
+</div>
+</body>
+<script type="text/javascript" src="/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/flavr.min.js"></script>
+<script type="text/javascript" src="/js/home.js"></script>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/dist/summernote.css" />
+	<!--美化弹出框-->
+	<link rel="stylesheet" type="text/css" href="/css/flavr.css">
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+			font-size: 14px;
+		}
+		.first-row{
+			height: 50px;
+			border-bottom: 1px solid #f0f0f0;
+			padding: 0 15px;
+		}
+		.first-row .first-row-p{
+			font-size: 18px;
+			line-height: 50px;
+		}
+
+	</style>
+</head>
+<body>
+<div class="container-fluid">
+	<div class="row first-row">
+		<div class="first-row-title pull-left">
+			<div class="first-row-p">
+				<span class="glyphicon glyphicon-glass"></span>&nbsp;新增博客
+			</div>
+		</div>
+	</div>
+
+	<div class="panel panel-default">
+	    <!-- <div class="panel-heading">
+	        <h3 class="panel-title">
+	            博客信息
+	        </h3>
+	    </div> -->
+	    <div class="panel-body">
+	        <form class="form-horizontal" role="form">
+	          <div class="form-group">
+	            <label class="col-md-2 control-label">博客标题：</label>
+	            <div class="col-md-6 ">
+	              <input type="text" class="form-control title" >
+	            </div>
+	          </div>
+	          <div class="form-group">
+	              <label class="col-md-2 control-label">所属类别：</label>
+	              <div class="col-md-2 ">
+		              <select class="form-control typeId">
+						  <div th:each="blogtype : ${blogTypes}">
+							  <option th:value="${blogtype.id}" th:text="${blogtype.typename}"></option>
+						  </div>
+		               <!-- <option value="1">人生感叹</option>
+						<option value="2">学习类</option>
+						<option value="3">工作类</option>
+						<option value="4">生活类</option>-->
+
+		              </select>
+	              </div>
+	           </div>
+	           <div class="form-group">
+	            <label class="col-md-2 control-label">博客内容：</label>
+	            <div class="col-md-8 ">
+	                 <div id="blog-content"></div>
+	            </div>
+	          </div>
+	          <div class="form-group">
+	            <label class="col-md-2 control-label">关键字：</label>
+	            <div class="col-md-6 ">
+	              <input type="text" class="form-control keyword" >
+	            </div>
+	          </div>
+
+	          <div class="form-group">
+			    <div class="col-sm-offset-2 col-sm-1">
+			      <button type="button" class="btn btn-primary" id="btn-save">保存</button>
+			    </div>
+			    <div class="col-sm-9">
+			      <button type="reset" class="btn btn-danger">重置</button>
+			    </div> 
+			  </div>
+	          
+	        </form>
+	    </div>
+	</div>
+
+</div>
+</body>
+<script type="text/javascript" src="/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.js"></script>
+<script type="text/javascript" src="/dist/summernote.js"></script>
+<script type="text/javascript" src="/js/flavr.min.js"></script>
+<script type="text/javascript" src="/js/common.js"></script>
+<script type="text/javascript" src="/js/blog/write.js"></script>
+
+</html>

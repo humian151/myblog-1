@@ -1,0 +1,11 @@
+<div class="jumbotron" th:each="blog : ${blogs}">
+    <h2 class="my-blog-title"><a th:href="'/front/view/'+${blog.id}"  th:text="${blog.title}" target="_blank">Eureka自我保护机制</a></h2>
+    <div class="my-blog-post-mata">
+        作者：<span class="author">系统管理员</span>
+        发表于：<span class="publis-time" th:text="${#dates.format(blog.releasedate, 'yyyy-MM-dd HH:mm:ss')}">2018-08-11 10:42</span>
+    </div>
+    <!--<span class="my-blog-img"><img src="image/tmp-1.jpg" /></span>-->
+    <p class="my-blog-content"  th:text="${blog.summary}"></p>
+    <p><a class="btn btn-primary btn-lg"  th:href="'/front/view/'+${blog.id}" target="_blank"  role="button">阅读全文</a></p>
+</div>
+

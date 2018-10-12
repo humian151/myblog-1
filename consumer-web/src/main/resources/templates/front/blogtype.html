@@ -1,0 +1,9 @@
+<div class="jumbotron">
+    <div class="my-blog-type">按博客类别</div>
+    <ul class="list-group my-blog-type-list">
+        <li class="list-group-item"  th:each="blogtype : ${blogtypes}">
+            <a href="javascript:void(0)" class="jumpToBlogType" th:text="${blogtype.typename}">Java核心基础</a>
+            <span class="label label-primary" th:text="${blogtype.count}">15</span>
+        </li>
+    </ul>
+</div>

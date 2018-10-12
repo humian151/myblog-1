@@ -1,0 +1,32 @@
+html,body{
+    width: 100%;
+    height: 100%;
+    background-color: #f0f0f0;
+}
+.first-row{
+    width: 400px;
+    margin: 0 auto;
+    height: 200px;
+}
+.first-row h1{
+    text-align: center;
+    margin-top: 125px;
+}
+.second-row{
+    width: 346px;
+    margin: 0 auto;
+    height: 245px;
+    background: #fff;
+    border: 1px solid #f3e8e8;
+}
+.second-row form{
+    margin: 36px 50px;
+    width: 300px;
+}
+.third-row{
+    width: 400px;
+    margin: 0 auto;
+    height: 45px;
+    text-align: center;
+    line-height: 45px;
+}

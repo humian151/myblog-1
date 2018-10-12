@@ -1,0 +1,12 @@
+server:
+  port: 8182
+spring:
+  thymeleaf:
+    cache: false
+    mode: LEGACYHTML5
+  mvc:
+    view:
+      suffix: .html
+  http:
+    encoding:
+      charset: UTF-8

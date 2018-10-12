@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <title>博客管理</title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap-table.css">
+    <link rel="stylesheet" type="text/css" href="/css/list.css">
+    <link rel="stylesheet" type="text/css" href="/css/flavr.css">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row first-row">
+        <div class="first-row-title pull-left">
+            <div class="first-row-p">
+                <span class="glyphicon glyphicon-glass"></span>&nbsp;评论信息管理
+            </div>
+        </div>
+        <div class="first-row-button-group pull-right">
+            <button class="btn btn-default active" onclick="hideQueryParam(this)">
+                <span class="glyphicon glyphicon-collapse-down"></span>&nbsp;隐藏
+            </button>
+        </div>
+    </div>
+    <div class="row second-row">
+        <form class="form-inline">
+            <div class="form-group">
+                <label>评论内容：</label>
+                <input type="text" class="form-control content">
+            </div>
+            <div class="form-group">
+                <label>博客标题：</label>
+                <input type="text" class="form-control title">
+            </div>
+            <div class="form-group">
+                <label>审核状态：</label>
+                <select class="form-control state">
+                    <option value="0">未审核</option>
+                    <option value="1">审核通过</option>
+                    <option value="2">审核不通过</option>
+                </select>
+            </div>
+            &nbsp;&nbsp;
+            <button class="btn btn-primary" type="button" id="btn-query">查询</button>&nbsp;&nbsp;
+            <button class="btn btn-danger" type="button"  id="btn-del">删除</button>&nbsp;&nbsp;
+        </form>
+    </div>
+    <div class="row  three-row">
+        <!--https://blog.csdn.net/lzx_longyou/article/details/50563907-->
+        <div class="tab-div">
+            <table class="table table-bordered table-striped table-hover table-condensed table-responsive"
+                   id="data_tab">
+            </table>
+        </div>
+    </div>
+</div>
+<!-- container-fluid end -->
+
+</body>
+<script type="text/javascript" src="/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.js"></script>
+<script type="text/javascript" src="/js/bootstrap-table.js"></script>
+<script type="text/javascript" src="/js/bootstrap-table-zh-CN.js"></script>
+<script type="text/javascript" src="/js/flavr.min.js"></script>
+<script type="text/javascript" src="/js/common.js"></script>
+<script type="text/javascript" src="/js/comment/commentManage.js"></script>
+
+</html>
