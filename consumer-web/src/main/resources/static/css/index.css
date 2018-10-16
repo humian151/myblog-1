@@ -73,6 +73,20 @@ body{
     height: 50%;
 }
 
+/*文章内容*/
+.image-container{
+ position: relative;
+}
+.image-container .image-view{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    cursor: zoom-in;
+}
+
 /*右侧栏目*/
 .my-main .jumbotron .my-blog-type{
     font-size: 20px;
@@ -82,6 +96,8 @@ body{
     margin-left: -15px;
 }
 
+
+
 /*主页 end*/
 
 /*尾部*/
@@ -90,3 +106,4 @@ body{
     height: 200px;
     background: #777;
 }
+

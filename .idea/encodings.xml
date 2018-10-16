@@ -3,6 +3,7 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/blog-reptile" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/consumer" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/consumer-web" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/provider" charset="UTF-8" />

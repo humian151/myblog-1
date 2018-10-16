@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="api" />
+        <module name="blog-reptile" />
         <module name="consumer" />
         <module name="consumer-web" />
         <module name="provider" />
@@ -15,6 +16,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="api" target="1.8" />
+      <module name="blog-reptile" target="1.8" />
       <module name="consumer" target="1.8" />
       <module name="consumer-web" target="1.8" />
       <module name="myblog-1" target="1.8" />
